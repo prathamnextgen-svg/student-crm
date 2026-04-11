@@ -23,6 +23,23 @@ const CSS = `
   ::-webkit-scrollbar-thumb { background: #D1D5DB; border-radius: 10px; }
   .app { display: flex; height: 100vh; overflow: hidden; }
 
+  /* LOGIN */
+  .login-page { min-height: 100vh; background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 50%, #0F172A 100%); display: flex; align-items: center; justify-content: center; padding: 20px; }
+  .login-box { background: #fff; border-radius: 16px; padding: 40px; width: 400px; max-width: 100%; box-shadow: 0 25px 60px rgba(0,0,0,0.3); }
+  .login-logo { text-align: center; margin-bottom: 28px; }
+  .login-logo-icon { width: 64px; height: 64px; background: linear-gradient(135deg,#3B82F6,#1D4ED8); border-radius: 16px; display: inline-flex; align-items: center; justify-content: center; font-size: 32px; margin-bottom: 12px; }
+  .login-logo h1 { font-size: 22px; font-weight: 700; color: #0F172A; }
+  .login-logo p { font-size: 13px; color: #94A3B8; margin-top: 4px; }
+  .login-form { display: flex; flex-direction: column; gap: 16px; }
+  .login-label { font-size: 12px; font-weight: 600; color: #374151; margin-bottom: 6px; display: block; }
+  .login-input { width: 100%; padding: 11px 14px; border: 1.5px solid #E2E8F0; border-radius: 8px; font-size: 14px; font-family: 'DM Sans',sans-serif; outline: none; transition: all 0.15s; color: #18181B; }
+  .login-input:focus { border-color: #3B82F6; box-shadow: 0 0 0 3px rgba(59,130,246,0.1); }
+  .login-btn { width: 100%; padding: 12px; background: linear-gradient(135deg,#2563EB,#1D4ED8); color: #fff; border: none; border-radius: 8px; font-size: 14px; font-weight: 700; font-family: 'DM Sans',sans-serif; cursor: pointer; transition: all 0.15s; margin-top: 4px; }
+  .login-btn:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(37,99,235,0.4); }
+  .login-btn:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
+  .login-error { background: #FEF2F2; border: 1px solid #FECACA; color: #DC2626; padding: 10px 14px; border-radius: 8px; font-size: 13px; text-align: center; }
+  .login-footer { text-align: center; margin-top: 20px; font-size: 12px; color: #94A3B8; }
+
   /* SIDEBAR */
   .sidebar { width: 230px; background: #0F172A; display: flex; flex-direction: column; flex-shrink: 0; }
   .sidebar-logo { padding: 22px 18px 18px; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; gap: 10px; }
@@ -36,7 +53,12 @@ const CSS = `
   .nav-item .nav-icon { width: 30px; height: 30px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 14px; background: rgba(255,255,255,0.05); flex-shrink: 0; }
   .nav-item.active .nav-icon { background: rgba(59,130,246,0.25); }
   .nav-badge { background: #EF4444; color: #fff; font-size: 10px; padding: 2px 7px; border-radius: 20px; margin-left: auto; font-weight: 700; }
-  .sidebar-footer { margin-top: auto; padding: 14px 18px; border-top: 1px solid rgba(255,255,255,0.06); font-size: 11px; color: rgba(255,255,255,0.2); }
+  .sidebar-footer { margin-top: auto; padding: 14px 18px; border-top: 1px solid rgba(255,255,255,0.06); }
+  .user-info { display: flex; align-items: center; gap: 10px; }
+  .user-avatar { width: 32px; height: 32px; background: linear-gradient(135deg,#3B82F6,#7C3AED); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: #fff; flex-shrink: 0; }
+  .user-name { font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.7); flex: 1; }
+  .logout-btn { background: none; border: none; cursor: pointer; color: rgba(255,255,255,0.3); font-size: 16px; padding: 4px; transition: all 0.15s; }
+  .logout-btn:hover { color: #EF4444; }
 
   /* MAIN */
   .main { flex: 1; overflow-y: auto; display: flex; flex-direction: column; }
@@ -154,23 +176,16 @@ const CSS = `
   textarea { resize: vertical; min-height: 75px; }
   select { cursor: pointer; }
 
-  /* DASHBOARD GRID */
+  /* DASHBOARD */
   .dash-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .flow-card { background: linear-gradient(135deg,#1E3A8A,#2563EB); border-radius: 12px; padding: 16px 18px; margin-bottom: 20px; color: #fff; }
   .flow-card h4 { font-size: 12px; font-weight: 600; opacity: 0.7; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
   .flow-steps { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
   .flow-step { background: rgba(255,255,255,0.15); padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 500; }
   .flow-arrow { opacity: 0.5; font-size: 14px; }
-
-  /* PASS TOGGLE */
   .pass-cell { display: flex; align-items: center; gap: 5px; }
   .pass-toggle { background: none; border: none; cursor: pointer; color: #94A3B8; padding: 2px; font-size: 13px; }
-  .pass-toggle:hover { color: #475569; }
-
-  /* ACTIONS */
   .actions { display: flex; gap: 5px; align-items: center; }
-
-  /* FOLLOWUP TODAY ROW */
   .row-today { background: #FFFBEB !important; }
 `
 
@@ -196,7 +211,7 @@ function WaBtn({ number }) {
 
 function Avatar({ name }) {
   const initials = (name||'?').split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase()
-  return <div style={{ width:32,height:32,borderRadius:'50%',background:'linear-gradient(135deg,#3B82F6,#7C3AED)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:12,fontWeight:700,color:'#fff',flexShrink:0 }}>{initials}</div>
+  return <div style={{width:32,height:32,borderRadius:'50%',background:'linear-gradient(135deg,#3B82F6,#7C3AED)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:12,fontWeight:700,color:'#fff',flexShrink:0}}>{initials}</div>
 }
 
 function exportExcel(data, name) {
@@ -206,7 +221,58 @@ function exportExcel(data, name) {
   XLSX.writeFile(wb, `${name}_${new Date().toLocaleDateString('en-IN')}.xlsx`)
 }
 
+function LoginPage({ onLogin }) {
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
+
+  async function handleLogin() {
+    if (!username || !password) { setError('Please enter username and password'); return }
+    setLoading(true); setError('')
+    const { data } = await supabase.from('users').select('*').eq('username', username).eq('password', password).single()
+    if (data) {
+      localStorage.setItem('crm_user', JSON.stringify(data))
+      onLogin(data)
+    } else {
+      setError('Invalid username or password')
+    }
+    setLoading(false)
+  }
+
+  return (
+    <>
+      <style>{CSS}</style>
+      <div className="login-page">
+        <div className="login-box">
+          <div className="login-logo">
+            <div className="login-logo-icon">🎓</div>
+            <h1>Gyan Education CRM</h1>
+            <p>Sign in to access your dashboard</p>
+          </div>
+          <div className="login-form">
+            {error && <div className="login-error">⚠️ {error}</div>}
+            <div>
+              <label className="login-label">Username</label>
+              <input className="login-input" type="text" placeholder="Enter username" value={username} onChange={e=>setUsername(e.target.value)} onKeyDown={e=>e.key==='Enter'&&handleLogin()} />
+            </div>
+            <div>
+              <label className="login-label">Password</label>
+              <input className="login-input" type="password" placeholder="Enter password" value={password} onChange={e=>setPassword(e.target.value)} onKeyDown={e=>e.key==='Enter'&&handleLogin()} />
+            </div>
+            <button className="login-btn" onClick={handleLogin} disabled={loading}>
+              {loading ? 'Signing in...' : 'Sign In →'}
+            </button>
+          </div>
+          <div className="login-footer">Gyan Education · Internal Team Only</div>
+        </div>
+      </div>
+    </>
+  )
+}
+
 export default function App() {
+  const [user, setUser] = useState(null)
   const [page, setPage] = useState('dashboard')
   const [inquiries, setInquiries] = useState([])
   const [scholarships, setScholarships] = useState([])
@@ -221,7 +287,11 @@ export default function App() {
 
   const today = new Date().toISOString().split('T')[0]
 
-  useEffect(() => { loadAll() }, [])
+  useEffect(() => {
+    const saved = localStorage.getItem('crm_user')
+    if (saved) setUser(JSON.parse(saved))
+    loadAll()
+  }, [])
 
   async function loadAll() {
     setLoading(true)
@@ -237,6 +307,13 @@ export default function App() {
     if (f.data) setFollowups(f.data)
     setLoading(false)
   }
+
+  function handleLogout() {
+    localStorage.removeItem('crm_user')
+    setUser(null)
+  }
+
+  if (!user) return <LoginPage onLogin={setUser} />
 
   function openModal(type, data={}) { setForm(data); setModal(type) }
   function closeModal() { setModal(null); setForm({}) }
@@ -302,7 +379,7 @@ export default function App() {
   }
 
   async function deleteInquiry(id) {
-    if (window.confirm('Delete this student inquiry? This cannot be undone.')) {
+    if (window.confirm('Delete this student inquiry?')) {
       await supabase.from('inquiries').delete().eq('id',id)
       loadAll()
     }
@@ -337,8 +414,7 @@ export default function App() {
       <style>{CSS}</style>
       <div style={{display:'flex',alignItems:'center',justifyContent:'center',height:'100vh',background:'#F7F8FA',flexDirection:'column',gap:16}}>
         <div style={{width:60,height:60,background:'linear-gradient(135deg,#3B82F6,#1D4ED8)',borderRadius:16,display:'flex',alignItems:'center',justifyContent:'center',fontSize:28}}>🎓</div>
-        <div style={{fontSize:16,fontWeight:600,color:'#0F172A'}}>Student CRM</div>
-        <div style={{fontSize:13,color:'#94A3B8'}}>Loading your data...</div>
+        <div style={{fontSize:16,fontWeight:600,color:'#0F172A'}}>Loading your data...</div>
       </div>
     </>
   )
@@ -347,14 +423,12 @@ export default function App() {
     <>
       <style>{CSS}</style>
       <div className="app">
-
-        {/* SIDEBAR */}
         <div className="sidebar">
           <div className="sidebar-logo">
             <div className="sidebar-logo-icon">🎓</div>
             <div>
-              <h1>Student CRM</h1>
-              <p>NextGen Education</p>
+              <h1>Gyan Education</h1>
+              <p>Student CRM</p>
             </div>
           </div>
           <div className="nav-group-label">Navigation</div>
@@ -365,12 +439,16 @@ export default function App() {
               {item.badge?<span className="nav-badge">{item.badge}</span>:null}
             </div>
           ))}
-          <div className="sidebar-footer">Prathamnextgen SVG</div>
+          <div className="sidebar-footer">
+            <div className="user-info">
+              <div className="user-avatar">{(user.name||'U')[0].toUpperCase()}</div>
+              <span className="user-name">{user.name||user.username}</span>
+              <button className="logout-btn" onClick={handleLogout} title="Logout">⏻</button>
+            </div>
+          </div>
         </div>
 
-        {/* MAIN AREA */}
         <div className="main">
-          {/* TOPBAR */}
           <div className="topbar">
             <div className="topbar-left">
               <h2>{pageInfo[page].title}</h2>
@@ -393,8 +471,6 @@ export default function App() {
           </div>
 
           <div className="content">
-
-            {/* ── DASHBOARD ── */}
             {page==='dashboard'&&(
               <>
                 <div className="flow-card">
@@ -457,7 +533,6 @@ export default function App() {
               </>
             )}
 
-            {/* ── INQUIRY ── */}
             {page==='inquiry'&&(
               <div className="table-card">
                 <div className="table-card-header">
@@ -496,11 +571,10 @@ export default function App() {
               </div>
             )}
 
-            {/* ── SCHOLARSHIP ── */}
             {page==='scholarship'&&(
               <div className="table-card">
                 <div className="table-card-header">
-                  <div><h3>Scholarship List</h3><p>Students with Completed inquiry status — {filtered(scholarships).length} records</p></div>
+                  <div><h3>Scholarship List</h3><p>Students with Completed inquiry — {filtered(scholarships).length} records</p></div>
                 </div>
                 <div className="table-wrap">
                   <table>
@@ -535,18 +609,17 @@ export default function App() {
                           <td><button className="btn btn-sm btn-primary" onClick={()=>openModal('scholarship',r)}>Open</button></td>
                         </tr>
                       ))}
-                      {filtered(scholarships).length===0&&<tr className="empty-row"><td colSpan={10}><span className="empty-icon">🎓</span><span className="empty-text">No scholarships yet. Mark an inquiry as Completed to populate this list.</span></td></tr>}
+                      {filtered(scholarships).length===0&&<tr className="empty-row"><td colSpan={10}><span className="empty-icon">🎓</span><span className="empty-text">No scholarships yet.</span></td></tr>}
                     </tbody>
                   </table>
                 </div>
               </div>
             )}
 
-            {/* ── PAYMENT ── */}
             {page==='payment'&&(
               <div className="table-card">
                 <div className="table-card-header">
-                  <div><h3>Payment Tracking</h3><p>Students with Approved scholarship — {filtered(payments).length} records</p></div>
+                  <div><h3>Payment Tracking</h3><p>Approved scholarship students — {filtered(payments).length} records</p></div>
                 </div>
                 <div className="table-wrap">
                   <table>
@@ -573,14 +646,13 @@ export default function App() {
                           <td><button className="btn btn-sm btn-blue-soft" onClick={()=>openModal('payment',r)}>Edit</button></td>
                         </tr>
                       ))}
-                      {filtered(payments).length===0&&<tr className="empty-row"><td colSpan={11}><span className="empty-icon">💳</span><span className="empty-text">No payments yet. Approve a scholarship to populate this list.</span></td></tr>}
+                      {filtered(payments).length===0&&<tr className="empty-row"><td colSpan={11}><span className="empty-icon">💳</span><span className="empty-text">No payments yet.</span></td></tr>}
                     </tbody>
                   </table>
                 </div>
               </div>
             )}
 
-            {/* ── FOLLOW-UPS ── */}
             {page==='followups'&&(
               <>
                 <div className="stats-grid" style={{gridTemplateColumns:'repeat(3,1fr)'}}>
@@ -602,7 +674,7 @@ export default function App() {
                   <div className="table-wrap">
                     <table>
                       <thead><tr>
-                        <th>Student</th><th>Contact</th><th>Remark</th><th>Follow-up Date</th><th>Source</th><th>Status</th><th>Action</th>
+                        <th>Student</th><th>Contact</th><th>Remark</th><th>Date</th><th>Source</th><th>Status</th><th>Action</th>
                       </tr></thead>
                       <tbody>
                         {filtered(followups).map(r=>(
@@ -625,7 +697,7 @@ export default function App() {
                             </td>
                           </tr>
                         ))}
-                        {filtered(followups).length===0&&<tr className="empty-row"><td colSpan={7}><span className="empty-icon">🔔</span><span className="empty-text">No follow-ups yet. They appear automatically when you add remarks.</span></td></tr>}
+                        {filtered(followups).length===0&&<tr className="empty-row"><td colSpan={7}><span className="empty-icon">🔔</span><span className="empty-text">No follow-ups yet.</span></td></tr>}
                       </tbody>
                     </table>
                   </div>
@@ -635,7 +707,6 @@ export default function App() {
           </div>
         </div>
 
-        {/* ── INQUIRY MODAL ── */}
         {modal==='inquiry'&&(
           <div className="overlay" onClick={e=>e.target===e.currentTarget&&closeModal()}>
             <div className="modal">
@@ -692,7 +763,6 @@ export default function App() {
           </div>
         )}
 
-        {/* ── SCHOLARSHIP MODAL ── */}
         {modal==='scholarship'&&(
           <div className="overlay" onClick={e=>e.target===e.currentTarget&&closeModal()}>
             <div className="modal">
@@ -703,10 +773,7 @@ export default function App() {
               <div className="modal-body">
                 <div className="student-info-bar">
                   <div className="avatar">{(form.student_name||'?')[0].toUpperCase()}</div>
-                  <div className="info">
-                    <h4>{form.student_name}</h4>
-                    <p>{form.university_name} · {form.course_name}</p>
-                  </div>
+                  <div className="info"><h4>{form.student_name}</h4><p>{form.university_name} · {form.course_name}</p></div>
                 </div>
                 <div className="form-grid">
                   <div className="form-section">Portal Credentials</div>
@@ -730,7 +797,6 @@ export default function App() {
           </div>
         )}
 
-        {/* ── PAYMENT MODAL ── */}
         {modal==='payment'&&(
           <div className="overlay" onClick={e=>e.target===e.currentTarget&&closeModal()}>
             <div className="modal">
@@ -741,10 +807,7 @@ export default function App() {
               <div className="modal-body">
                 <div className="student-info-bar">
                   <div className="avatar">{(form.student_name||'?')[0].toUpperCase()}</div>
-                  <div className="info">
-                    <h4>{form.student_name}</h4>
-                    <p>{form.university_name} · {form.course_name}</p>
-                  </div>
+                  <div className="info"><h4>{form.student_name}</h4><p>{form.university_name} · {form.course_name}</p></div>
                 </div>
                 <div className="form-grid">
                   <div className="form-section">Payment Information</div>
@@ -777,7 +840,6 @@ export default function App() {
             </div>
           </div>
         )}
-
       </div>
     </>
   )
