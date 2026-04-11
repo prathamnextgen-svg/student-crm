@@ -23,7 +23,6 @@ const CSS = `
   ::-webkit-scrollbar-thumb { background: #D1D5DB; border-radius: 10px; }
   .app { display: flex; height: 100vh; overflow: hidden; }
 
-  /* LOGIN */
   .login-page { min-height: 100vh; background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 50%, #0F172A 100%); display: flex; align-items: center; justify-content: center; padding: 20px; }
   .login-box { background: #fff; border-radius: 16px; padding: 40px; width: 400px; max-width: 100%; box-shadow: 0 25px 60px rgba(0,0,0,0.3); }
   .login-logo { text-align: center; margin-bottom: 28px; }
@@ -40,11 +39,10 @@ const CSS = `
   .login-error { background: #FEF2F2; border: 1px solid #FECACA; color: #DC2626; padding: 10px 14px; border-radius: 8px; font-size: 13px; text-align: center; }
   .login-footer { text-align: center; margin-top: 20px; font-size: 12px; color: #94A3B8; }
 
-  /* SIDEBAR */
   .sidebar { width: 230px; background: #0F172A; display: flex; flex-direction: column; flex-shrink: 0; }
   .sidebar-logo { padding: 22px 18px 18px; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; gap: 10px; }
   .sidebar-logo-icon { width: 36px; height: 36px; background: linear-gradient(135deg,#3B82F6,#1D4ED8); border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
-  .sidebar-logo h1 { font-size: 14px; font-weight: 700; color: #fff; letter-spacing: -0.2px; }
+  .sidebar-logo h1 { font-size: 14px; font-weight: 700; color: #fff; }
   .sidebar-logo p { font-size: 10px; color: rgba(255,255,255,0.35); margin-top: 1px; }
   .nav-group-label { padding: 16px 18px 6px; font-size: 9px; font-weight: 600; color: rgba(255,255,255,0.25); text-transform: uppercase; letter-spacing: 1.2px; }
   .nav-item { display: flex; align-items: center; gap: 10px; padding: 9px 12px; margin: 1px 8px; border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.5); transition: all 0.15s; user-select: none; }
@@ -60,7 +58,6 @@ const CSS = `
   .logout-btn { background: none; border: none; cursor: pointer; color: rgba(255,255,255,0.3); font-size: 16px; padding: 4px; transition: all 0.15s; }
   .logout-btn:hover { color: #EF4444; }
 
-  /* MAIN */
   .main { flex: 1; overflow-y: auto; display: flex; flex-direction: column; }
   .topbar { background: #fff; border-bottom: 1px solid #E4E7EC; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 58px; flex-shrink: 0; position: sticky; top: 0; z-index: 10; }
   .topbar-left h2 { font-size: 16px; font-weight: 700; color: #0F172A; }
@@ -68,12 +65,13 @@ const CSS = `
   .topbar-right { display: flex; gap: 8px; align-items: center; }
   .content { padding: 22px 24px; flex: 1; }
 
-  /* BUTTONS */
   .btn { display: inline-flex; align-items: center; gap: 6px; padding: 0 16px; height: 36px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; border: none; font-family: 'DM Sans', sans-serif; transition: all 0.15s; white-space: nowrap; }
   .btn-primary { background: #2563EB; color: #fff; }
   .btn-primary:hover { background: #1D4ED8; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(37,99,235,0.35); }
   .btn-green { background: #059669; color: #fff; }
   .btn-green:hover { background: #047857; }
+  .btn-orange { background: #EA580C; color: #fff; }
+  .btn-orange:hover { background: #C2410C; }
   .btn-light { background: #F1F5F9; color: #475569; border: 1px solid #E2E8F0; }
   .btn-light:hover { background: #E2E8F0; }
   .btn-blue-soft { background: #EFF6FF; color: #2563EB; }
@@ -82,15 +80,15 @@ const CSS = `
   .btn-red-soft:hover { background: #FEE2E2; }
   .btn-emerald-soft { background: #ECFDF5; color: #059669; }
   .btn-emerald-soft:hover { background: #D1FAE5; }
+  .btn-purple-soft { background: #F5F3FF; color: #7C3AED; }
+  .btn-purple-soft:hover { background: #EDE9FE; }
   .btn-sm { height: 30px; padding: 0 12px; font-size: 12px; border-radius: 6px; }
 
-  /* SEARCH */
   .search-wrap { position: relative; }
   .search-wrap input { padding: 0 12px 0 34px; height: 36px; border: 1px solid #E2E8F0; border-radius: 8px; font-size: 13px; width: 230px; outline: none; font-family: 'DM Sans', sans-serif; color: #18181B; background: #F8FAFC; transition: all 0.15s; }
   .search-wrap input:focus { border-color: #3B82F6; background: #fff; box-shadow: 0 0 0 3px rgba(59,130,246,0.1); }
   .search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: #94A3B8; font-size: 14px; pointer-events: none; }
 
-  /* STATS */
   .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; margin-bottom: 22px; }
   .stat-card { background: #fff; border-radius: 12px; padding: 16px 18px; border: 1px solid #E4E7EC; position: relative; overflow: hidden; }
   .stat-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; border-radius: 12px 12px 0 0; }
@@ -103,7 +101,6 @@ const CSS = `
   .stat-card .s-sub { font-size: 11px; color: #CBD5E1; margin-top: 4px; }
   .stat-card .s-icon { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); font-size: 28px; opacity: 0.12; }
 
-  /* TABLE CARD */
   .table-card { background: #fff; border-radius: 12px; border: 1px solid #E4E7EC; overflow: hidden; margin-bottom: 20px; }
   .table-card-header { padding: 14px 18px; border-bottom: 1px solid #F1F5F9; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
   .table-card-header h3 { font-size: 14px; font-weight: 700; color: #0F172A; }
@@ -122,7 +119,6 @@ const CSS = `
   .empty-row .empty-icon { font-size: 32px; display: block; margin-bottom: 8px; }
   .empty-row .empty-text { font-size: 13px; }
 
-  /* BADGES */
   .badge { display: inline-flex; align-items: center; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; white-space: nowrap; }
   .badge-pending { background: #FEF9C3; color: #854D0E; }
   .badge-completed { background: #DCFCE7; color: #166534; }
@@ -139,16 +135,15 @@ const CSS = `
   .badge-admission { background: #EFF6FF; color: #1D4ED8; }
   .badge-scholarship { background: #F5F3FF; color: #6D28D9; }
   .badge-payment { background: #F0FDF4; color: #15803D; }
-  .today-tag { background: #FEF2F2; color: #EF4444; font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 6px; margin-left: 5px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .today-tag { background: #FEF2F2; color: #EF4444; font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 6px; margin-left: 5px; text-transform: uppercase; }
 
-  /* WA BUTTON */
-  .wa-btn { display: inline-flex; align-items: center; gap: 3px; background: #22C55E; color: #fff; padding: 3px 8px; border-radius: 6px; font-size: 10px; font-weight: 700; text-decoration: none; margin-left: 5px; transition: all 0.15s; }
+  .wa-btn { display: inline-flex; align-items: center; background: #22C55E; color: #fff; padding: 3px 8px; border-radius: 6px; font-size: 10px; font-weight: 700; text-decoration: none; margin-left: 5px; transition: all 0.15s; }
   .wa-btn:hover { background: #16A34A; }
 
-  /* MODAL */
   .overlay { position: fixed; inset: 0; background: rgba(15,23,42,0.55); backdrop-filter: blur(2px); z-index: 200; display: flex; align-items: center; justify-content: center; padding: 20px; animation: fadeIn 0.15s ease; }
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   .modal { background: #fff; border-radius: 14px; width: 740px; max-width: 100%; max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.2); animation: slideUp 0.2s ease; }
+  .modal-wide { width: 860px; }
   @keyframes slideUp { from { transform: translateY(16px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
   .modal-header { padding: 18px 22px; border-bottom: 1px solid #F1F5F9; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; background: #fff; z-index: 1; border-radius: 14px 14px 0 0; }
   .modal-header h3 { font-size: 16px; font-weight: 700; color: #0F172A; }
@@ -161,7 +156,20 @@ const CSS = `
   .student-info-bar .info h4 { font-size: 14px; font-weight: 700; color: #1E40AF; }
   .student-info-bar .info p { font-size: 12px; color: #3B82F6; }
 
-  /* FORM */
+  /* Inquiry View Modal */
+  .inquiry-view-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .inquiry-view-item { background: #F8FAFC; border-radius: 8px; padding: 10px 14px; }
+  .inquiry-view-item .iv-label { font-size: 10px; font-weight: 700; color: #94A3B8; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 4px; }
+  .inquiry-view-item .iv-value { font-size: 13px; font-weight: 600; color: #0F172A; }
+  .inquiry-view-item.full { grid-column: 1/-1; }
+  .inquiry-view-section { grid-column: 1/-1; font-size: 11px; font-weight: 700; color: #3B82F6; text-transform: uppercase; letter-spacing: 0.8px; padding-bottom: 6px; border-bottom: 1px solid #EFF6FF; margin-top: 8px; }
+
+  /* Backup section */
+  .backup-bar { background: linear-gradient(135deg,#F0FDF4,#DCFCE7); border: 1px solid #86EFAC; border-radius: 10px; padding: 14px 18px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+  .backup-bar-left h4 { font-size: 14px; font-weight: 700; color: #166534; }
+  .backup-bar-left p { font-size: 12px; color: #16A34A; margin-top: 2px; }
+  .backup-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+
   .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .form-group { display: flex; flex-direction: column; gap: 6px; }
   .form-group.full { grid-column: 1 / -1; }
@@ -169,14 +177,12 @@ const CSS = `
   label { font-size: 12px; font-weight: 600; color: #374151; }
   input[type=text], input[type=email], input[type=number], input[type=date], input[type=password], select, textarea {
     padding: 9px 12px; border: 1px solid #E2E8F0; border-radius: 8px; font-size: 13px;
-    color: #18181B; font-family: 'DM Sans', sans-serif; outline: none; background: #fff;
-    transition: all 0.15s; width: 100%;
+    color: #18181B; font-family: 'DM Sans', sans-serif; outline: none; background: #fff; transition: all 0.15s; width: 100%;
   }
   input:focus, select:focus, textarea:focus { border-color: #3B82F6; box-shadow: 0 0 0 3px rgba(59,130,246,0.1); }
   textarea { resize: vertical; min-height: 75px; }
   select { cursor: pointer; }
 
-  /* DASHBOARD */
   .dash-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .flow-card { background: linear-gradient(135deg,#1E3A8A,#2563EB); border-radius: 12px; padding: 16px 18px; margin-bottom: 20px; color: #fff; }
   .flow-card h4 { font-size: 12px; font-weight: 600; opacity: 0.7; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
@@ -185,7 +191,7 @@ const CSS = `
   .flow-arrow { opacity: 0.5; font-size: 14px; }
   .pass-cell { display: flex; align-items: center; gap: 5px; }
   .pass-toggle { background: none; border: none; cursor: pointer; color: #94A3B8; padding: 2px; font-size: 13px; }
-  .actions { display: flex; gap: 5px; align-items: center; }
+  .actions { display: flex; gap: 5px; align-items: center; flex-wrap: wrap; }
   .row-today { background: #FFFBEB !important; }
 `
 
@@ -219,6 +225,65 @@ function exportExcel(data, name) {
   const wb = XLSX.utils.book_new()
   XLSX.utils.book_append_sheet(wb, ws, name)
   XLSX.writeFile(wb, `${name}_${new Date().toLocaleDateString('en-IN')}.xlsx`)
+}
+
+function exportAllData(inquiries, scholarships, payments, followups) {
+  const wb = XLSX.utils.book_new()
+  XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(inquiries), 'Inquiries')
+  XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(scholarships), 'Scholarships')
+  XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(payments), 'Payments')
+  XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(followups), 'Followups')
+  XLSX.writeFile(wb, `GyanEducation_FullBackup_${new Date().toLocaleDateString('en-IN')}.xlsx`)
+}
+
+function InquiryViewModal({ inquiry, onClose }) {
+  if (!inquiry) return null
+  const fields = [
+    { label:'Student Name', value: inquiry.student_name, full: false },
+    { label:'Contact Number', value: inquiry.contact_number, full: false },
+    { label:'Email ID', value: inquiry.email, full: false },
+    { label:'Last Qualification', value: inquiry.last_qualification, full: false },
+    { label:'Parent Contact', value: inquiry.parent_contact, full: false },
+    { label:'Category', value: inquiry.category, full: false },
+    { label:'University Name', value: inquiry.university_name, full: false },
+    { label:'Course Name', value: inquiry.course_name, full: false },
+    { label:'Agent Name', value: inquiry.agent_name, full: false },
+    { label:'Purpose', value: inquiry.purpose, full: false },
+    { label:'Bank Account', value: inquiry.bank_account, full: false },
+    { label:'Status', value: inquiry.status, full: false },
+    { label:'Documents / Remarks', value: inquiry.remarks, full: true },
+  ]
+  return (
+    <div className="overlay" onClick={e=>e.target===e.currentTarget&&onClose()}>
+      <div className="modal modal-wide">
+        <div className="modal-header">
+          <h3>📋 Inquiry Details — {inquiry.student_name}</h3>
+          <button className="modal-close" onClick={onClose}>×</button>
+        </div>
+        <div className="modal-body">
+          <div className="student-info-bar">
+            <div className="avatar">{(inquiry.student_name||'?')[0].toUpperCase()}</div>
+            <div className="info">
+              <h4>{inquiry.student_name}</h4>
+              <p>{inquiry.university_name} · {inquiry.course_name} · <StatusBadge status={inquiry.status}/></p>
+            </div>
+          </div>
+          <div className="inquiry-view-grid">
+            <div className="inquiry-view-section">Student Information</div>
+            {fields.map((f,i)=>(
+              <div key={i} className={`inquiry-view-item${f.full?' full':''}`}>
+                <div className="iv-label">{f.label}</div>
+                <div className="iv-value">{f.value||'—'}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="modal-footer">
+          <button className="btn btn-light" onClick={onClose}>Close</button>
+        </div>
+      </div>
+    </div>
+  )
 }
 
 function LoginPage({ onLogin }) {
@@ -260,9 +325,7 @@ function LoginPage({ onLogin }) {
               <label className="login-label">Password</label>
               <input className="login-input" type="password" placeholder="Enter password" value={password} onChange={e=>setPassword(e.target.value)} onKeyDown={e=>e.key==='Enter'&&handleLogin()} />
             </div>
-            <button className="login-btn" onClick={handleLogin} disabled={loading}>
-              {loading ? 'Signing in...' : 'Sign In →'}
-            </button>
+            <button className="login-btn" onClick={handleLogin} disabled={loading}>{loading?'Signing in...':'Sign In →'}</button>
           </div>
           <div className="login-footer">Gyan Education · Internal Team Only</div>
         </div>
@@ -280,6 +343,7 @@ export default function App() {
   const [followups, setFollowups] = useState([])
   const [loading, setLoading] = useState(true)
   const [modal, setModal] = useState(null)
+  const [viewInquiry, setViewInquiry] = useState(null)
   const [search, setSearch] = useState('')
   const [form, setForm] = useState({})
   const [showPass, setShowPass] = useState({})
@@ -308,17 +372,23 @@ export default function App() {
     setLoading(false)
   }
 
-  function handleLogout() {
-    localStorage.removeItem('crm_user')
-    setUser(null)
-  }
-
+  function handleLogout() { localStorage.removeItem('crm_user'); setUser(null) }
   if (!user) return <LoginPage onLogin={setUser} />
 
   function openModal(type, data={}) { setForm(data); setModal(type) }
   function closeModal() { setModal(null); setForm({}) }
   const fv = f => form[f] || ''
   const sf = (f,v) => setForm(prev=>({...prev,[f]:v}))
+
+  function getInquiryForScholarship(scholarship) {
+    return inquiries.find(i => i.id === scholarship.inquiry_id) || null
+  }
+
+  function getInquiryForPayment(payment) {
+    const scholarship = scholarships.find(s => s.id === payment.scholarship_id)
+    if (!scholarship) return null
+    return inquiries.find(i => i.id === scholarship.inquiry_id) || null
+  }
 
   async function saveInquiry() {
     setSaving(true)
@@ -399,6 +469,7 @@ export default function App() {
     {id:'scholarship',label:'Scholarship',icon:'🎓'},
     {id:'payment',label:'Payments',icon:'💳'},
     {id:'followups',label:'Follow-ups',icon:'🔔',badge:todayFollowups.length||null},
+    {id:'backup',label:'Data Backup',icon:'💾'},
   ]
 
   const pageInfo = {
@@ -407,6 +478,7 @@ export default function App() {
     scholarship:{title:'Scholarship Module',sub:'Track scholarship applications & credentials'},
     payment:{title:'Payment Tracking',sub:'Monitor payment status for approved students'},
     followups:{title:'Follow-ups',sub:'Daily tasks and pending follow-ups'},
+    backup:{title:'Data Backup',sub:'Download and backup all your data'},
   }
 
   if (loading) return (
@@ -426,10 +498,7 @@ export default function App() {
         <div className="sidebar">
           <div className="sidebar-logo">
             <div className="sidebar-logo-icon">🎓</div>
-            <div>
-              <h1>Gyan Education</h1>
-              <p>Student CRM</p>
-            </div>
+            <div><h1>Gyan Education</h1><p>Student CRM</p></div>
           </div>
           <div className="nav-group-label">Navigation</div>
           {navItems.map(item=>(
@@ -455,7 +524,7 @@ export default function App() {
               <p>{pageInfo[page].sub}</p>
             </div>
             <div className="topbar-right">
-              {page!=='dashboard'&&(
+              {page!=='dashboard'&&page!=='backup'&&(
                 <div className="search-wrap">
                   <span className="search-icon">🔍</span>
                   <input placeholder="Search students..." value={search} onChange={e=>setSearch(e.target.value)} />
@@ -471,6 +540,8 @@ export default function App() {
           </div>
 
           <div className="content">
+
+            {/* DASHBOARD */}
             {page==='dashboard'&&(
               <>
                 <div className="flow-card">
@@ -514,7 +585,7 @@ export default function App() {
                     </table>
                   </div>
                   <div className="table-card">
-                    <div className="table-card-header"><div><h3>Today's Follow-ups</h3><p>{todayFollowups.length} pending tasks for today</p></div></div>
+                    <div className="table-card-header"><div><h3>Today's Follow-ups</h3><p>{todayFollowups.length} pending tasks</p></div></div>
                     <table>
                       <thead><tr><th>Student</th><th>Remark</th><th>Type</th></tr></thead>
                       <tbody>
@@ -533,6 +604,7 @@ export default function App() {
               </>
             )}
 
+            {/* INQUIRY */}
             {page==='inquiry'&&(
               <div className="table-card">
                 <div className="table-card-header">
@@ -564,23 +636,24 @@ export default function App() {
                           </td>
                         </tr>
                       ))}
-                      {filtered(inquiries).length===0&&<tr className="empty-row"><td colSpan={10}><span className="empty-icon">📋</span><span className="empty-text">No inquiries found. Click "+ Add Student" to get started.</span></td></tr>}
+                      {filtered(inquiries).length===0&&<tr className="empty-row"><td colSpan={10}><span className="empty-icon">📋</span><span className="empty-text">No inquiries found.</span></td></tr>}
                     </tbody>
                   </table>
                 </div>
               </div>
             )}
 
+            {/* SCHOLARSHIP */}
             {page==='scholarship'&&(
               <div className="table-card">
                 <div className="table-card-header">
-                  <div><h3>Scholarship List</h3><p>Students with Completed inquiry — {filtered(scholarships).length} records</p></div>
+                  <div><h3>Scholarship List</h3><p>Completed inquiries — {filtered(scholarships).length} records</p></div>
                 </div>
                 <div className="table-wrap">
                   <table>
                     <thead><tr>
                       <th>Student</th><th>Contact</th><th>University</th><th>Course</th>
-                      <th>User ID</th><th>Password</th><th>Status</th><th>Follow-up</th><th>Remarks</th><th>Action</th>
+                      <th>User ID</th><th>Password</th><th>Status</th><th>Follow-up</th><th>Remarks</th><th>Actions</th>
                     </tr></thead>
                     <tbody>
                       {filtered(scholarships).map(r=>(
@@ -589,7 +662,7 @@ export default function App() {
                           <td style={{whiteSpace:'nowrap'}}>{r.contact_number}<WaBtn number={r.contact_number}/></td>
                           <td>{r.university_name||'—'}</td>
                           <td>{r.course_name||'—'}</td>
-                          <td className="td-mono">{r.user_id||<span className="td-muted">—</span>}</td>
+                          <td className="td-mono">{r.user_id||'—'}</td>
                           <td>
                             {r.password?(
                               <div className="pass-cell">
@@ -598,15 +671,20 @@ export default function App() {
                                   {showPass[r.id]?'🙈':'👁'}
                                 </button>
                               </div>
-                            ):<span className="td-muted">—</span>}
+                            ):'—'}
                           </td>
                           <td><StatusBadge status={r.status||'Edit'}/></td>
                           <td style={{whiteSpace:'nowrap'}}>
                             {r.followup_date||'—'}
                             {r.followup_date===today&&<span className="today-tag">TODAY</span>}
                           </td>
-                          <td style={{maxWidth:160,overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}} className="td-muted">{r.remarks||'—'}</td>
-                          <td><button className="btn btn-sm btn-primary" onClick={()=>openModal('scholarship',r)}>Open</button></td>
+                          <td style={{maxWidth:140,overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}} className="td-muted">{r.remarks||'—'}</td>
+                          <td>
+                            <div className="actions">
+                              <button className="btn btn-sm btn-primary" onClick={()=>openModal('scholarship',r)}>Open</button>
+                              <button className="btn btn-sm btn-purple-soft" onClick={()=>setViewInquiry(getInquiryForScholarship(r))}>📋 View</button>
+                            </div>
+                          </td>
                         </tr>
                       ))}
                       {filtered(scholarships).length===0&&<tr className="empty-row"><td colSpan={10}><span className="empty-icon">🎓</span><span className="empty-text">No scholarships yet.</span></td></tr>}
@@ -616,16 +694,17 @@ export default function App() {
               </div>
             )}
 
+            {/* PAYMENT */}
             {page==='payment'&&(
               <div className="table-card">
                 <div className="table-card-header">
-                  <div><h3>Payment Tracking</h3><p>Approved scholarship students — {filtered(payments).length} records</p></div>
+                  <div><h3>Payment Tracking</h3><p>Approved scholarships — {filtered(payments).length} records</p></div>
                 </div>
                 <div className="table-wrap">
                   <table>
                     <thead><tr>
                       <th>Student</th><th>Contact</th><th>University</th><th>Course</th>
-                      <th>Pay %</th><th>Bank</th><th>Follow-up</th><th>Remarks</th><th>Done</th><th>Final Remarks</th><th>Action</th>
+                      <th>Pay %</th><th>Bank</th><th>Follow-up</th><th>Remarks</th><th>Done</th><th>Final Remarks</th><th>Actions</th>
                     </tr></thead>
                     <tbody>
                       {filtered(payments).map(r=>(
@@ -643,7 +722,12 @@ export default function App() {
                           <td className="td-muted">{r.remarks||'—'}</td>
                           <td><StatusBadge status={r.payment_done||'No'}/></td>
                           <td className="td-muted">{r.final_remarks||'—'}</td>
-                          <td><button className="btn btn-sm btn-blue-soft" onClick={()=>openModal('payment',r)}>Edit</button></td>
+                          <td>
+                            <div className="actions">
+                              <button className="btn btn-sm btn-blue-soft" onClick={()=>openModal('payment',r)}>Edit</button>
+                              <button className="btn btn-sm btn-purple-soft" onClick={()=>setViewInquiry(getInquiryForPayment(r))}>📋 View</button>
+                            </div>
+                          </td>
                         </tr>
                       ))}
                       {filtered(payments).length===0&&<tr className="empty-row"><td colSpan={11}><span className="empty-icon">💳</span><span className="empty-text">No payments yet.</span></td></tr>}
@@ -653,6 +737,7 @@ export default function App() {
               </div>
             )}
 
+            {/* FOLLOWUPS */}
             {page==='followups'&&(
               <>
                 <div className="stats-grid" style={{gridTemplateColumns:'repeat(3,1fr)'}}>
@@ -704,9 +789,60 @@ export default function App() {
                 </div>
               </>
             )}
+
+            {/* BACKUP */}
+            {page==='backup'&&(
+              <>
+                <div className="backup-bar">
+                  <div className="backup-bar-left">
+                    <h4>💾 Data Backup</h4>
+                    <p>Download your data as Excel files for backup and offline use</p>
+                  </div>
+                  <div className="backup-btns">
+                    <button className="btn btn-green" onClick={()=>exportAllData(inquiries,scholarships,payments,followups)}>
+                      ⬇ Full Backup (All Data)
+                    </button>
+                  </div>
+                </div>
+                <div className="stats-grid">
+                  {[
+                    {label:'Inquiries',value:inquiries.length,cls:'blue',icon:'📋'},
+                    {label:'Scholarships',value:scholarships.length,cls:'purple',icon:'🎓'},
+                    {label:'Payments',value:payments.length,cls:'green',icon:'💳'},
+                    {label:'Follow-ups',value:followups.length,cls:'red',icon:'🔔'},
+                  ].map(s=>(
+                    <div key={s.label} className={`stat-card ${s.cls}`}>
+                      <div className="s-label">{s.label}</div>
+                      <div className="s-value">{s.value}</div>
+                      <div className="s-sub">records</div>
+                      <div className="s-icon">{s.icon}</div>
+                    </div>
+                  ))}
+                </div>
+                <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:14}}>
+                  {[
+                    {label:'📋 Inquiries',data:inquiries,name:'inquiries',cls:'blue'},
+                    {label:'🎓 Scholarships',data:scholarships,name:'scholarships',cls:'purple'},
+                    {label:'💳 Payments',data:payments,name:'payments',cls:'green'},
+                    {label:'🔔 Follow-ups',data:followups,name:'followups',cls:'red'},
+                  ].map(item=>(
+                    <div key={item.name} className="table-card" style={{marginBottom:0}}>
+                      <div className="table-card-header">
+                        <div><h3>{item.label}</h3><p>{item.data.length} records</p></div>
+                        <button className="btn btn-sm btn-green" onClick={()=>exportExcel(item.data,item.name)}>⬇ Download</button>
+                      </div>
+                      <div style={{padding:'12px 18px',fontSize:13,color:'#94A3B8'}}>
+                        Click Download to export this module as Excel file
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </>
+            )}
           </div>
         </div>
 
+        {/* INQUIRY MODAL */}
         {modal==='inquiry'&&(
           <div className="overlay" onClick={e=>e.target===e.currentTarget&&closeModal()}>
             <div className="modal">
@@ -746,8 +882,7 @@ export default function App() {
                   </div>
                   <div className="form-group"><label>Status</label>
                     <select value={fv('status')||'Pending'} onChange={e=>sf('status',e.target.value)}>
-                      <option>Pending</option>
-                      <option>Completed</option>
+                      <option>Pending</option><option>Completed</option>
                     </select>
                   </div>
                   <div className="form-group full"><label>Documents / Remarks</label>
@@ -763,6 +898,7 @@ export default function App() {
           </div>
         )}
 
+        {/* SCHOLARSHIP MODAL */}
         {modal==='scholarship'&&(
           <div className="overlay" onClick={e=>e.target===e.currentTarget&&closeModal()}>
             <div className="modal">
@@ -797,6 +933,7 @@ export default function App() {
           </div>
         )}
 
+        {/* PAYMENT MODAL */}
         {modal==='payment'&&(
           <div className="overlay" onClick={e=>e.target===e.currentTarget&&closeModal()}>
             <div className="modal">
@@ -840,6 +977,10 @@ export default function App() {
             </div>
           </div>
         )}
+
+        {/* VIEW INQUIRY POPUP */}
+        {viewInquiry && <InquiryViewModal inquiry={viewInquiry} onClose={()=>setViewInquiry(null)} />}
+
       </div>
     </>
   )
