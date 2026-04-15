@@ -664,12 +664,63 @@ export default function App(){
             {/* LOGIC: Auto-added when inquiry completed. Same screen for follow-ups. Show today's highlighted. */}
             {page==='scholarship'&&(
               <>
-                {todayScholFollowups.length>0&&(
-                  <div className="info-box">🔔 <strong>{todayScholFollowups.length}</strong> scholarship follow-up(s) due today — highlighted below in yellow.</div>
-                )}
+                {/* STEP 9: Scholarship Follow-up Logic
+                    - Show ONLY records where followup_date = Today AND status = pending
+                    - Use SAME screen (no separate follow-up module)
+                    - Approved/Rejected = stop showing in follow-ups */}
+
+                {/* SECTION 1: TODAY'S FOLLOW-UPS (pending only) */}
+                <div className="table-card">
+                  <div className="table-card-header" style={{background: todayScholFollowups.length>0 ? '#FFFBEB' : '#fff'}}>
+                    <div>
+                      <h3>🔔 Today's Scholarship Follow-ups</h3>
+                      <p>Records where follow-up date = today AND status is Pending — {todayScholFollowups.length} records</p>
+                    </div>
+                  </div>
+                  <div className="table-wrap">
+                    <table>
+                      <thead><tr><th>Student</th><th>Contact</th><th>University</th><th>Course</th><th>Login ID</th><th>Password</th><th>Status</th><th>Follow-up Date</th><th>Remark</th><th>Actions</th></tr></thead>
+                      <tbody>
+                        {todayScholFollowups.filter(r=>!search||Object.values(r).some(v=>String(v).toLowerCase().includes(search.toLowerCase()))).map(r=>(
+                          <tr key={r.id} className="row-today">
+                            <td><div style={{display:'flex',alignItems:'center',gap:8}}><Avatar name={r.student_name}/><span className="td-name">{r.student_name}</span></div></td>
+                            <td style={{whiteSpace:'nowrap'}}>{r.contact_number}<WaBtn number={r.contact_number}/></td>
+                            <td>{r.university_name||'—'}</td>
+                            <td>{r.course_name||'—'}</td>
+                            <td className="td-mono">{r.login_id||'—'}</td>
+                            <td>
+                              {r.password?(
+                                <div className="pass-cell">
+                                  <span className="td-mono">{showPass[r.id]?r.password:'••••••'}</span>
+                                  <button className="pass-toggle" onClick={()=>setShowPass(p=>({...p,[r.id]:!p[r.id]}))}>
+                                    {showPass[r.id]?'🙈':'👁'}
+                                  </button>
+                                </div>
+                              ):'—'}
+                            </td>
+                            <td><StatusBadge status={r.status||'pending'}/></td>
+                            <td style={{whiteSpace:'nowrap',color:'#EF4444',fontWeight:700}}>
+                              {r.followup_date}<span className="today-tag">TODAY</span>
+                            </td>
+                            <td className="td-muted" style={{maxWidth:140,overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{r.remark||'—'}</td>
+                            <td>
+                              <div className="actions">
+                                <button className="btn btn-sm btn-primary" onClick={()=>openModal('scholarship',r)}>Open</button>
+                                <button className="btn btn-sm btn-purple-soft" onClick={()=>{const inq=inquiries.find(i=>i.id===r.inquiry_id);if(inq) setViewInquiry(inq)}}>📋</button>
+                              </div>
+                            </td>
+                          </tr>
+                        ))}
+                        {!todayScholFollowups.length&&<tr className="empty-row"><td colSpan={10}><span className="empty-icon">✅</span><span className="empty-text">No scholarship follow-ups for today</span></td></tr>}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                {/* SECTION 2: ALL SCHOLARSHIPS (complete list for management) */}
                 <div className="table-card">
                   <div className="table-card-header">
-                    <div><h3>Scholarship List</h3><p>{filtered(scholarships).length} records · Auto-added when inquiry is marked Complete</p></div>
+                    <div><h3>All Scholarships</h3><p>{filtered(scholarships).length} total records · Approved ones moved to Payment</p></div>
                   </div>
                   <div className="table-wrap">
                     <table>
@@ -697,6 +748,7 @@ export default function App(){
                               {r.followup_date||'—'}
                               {isToday(r.followup_date)&&r.status==='pending'&&<span className="today-tag">TODAY</span>}
                               {isOverdue(r.followup_date)&&r.status==='pending'&&<span className="overdue-tag">OVERDUE</span>}
+                              {r.approved_date&&<span style={{fontSize:11,color:'#059669',marginLeft:4}}>✅ {r.approved_date}</span>}
                             </td>
                             <td className="td-muted" style={{maxWidth:140,overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{r.remark||'—'}</td>
                             <td>
@@ -716,22 +768,23 @@ export default function App(){
             )}
 
             {/* ════ PAYMENT ════ */}
-            {/* LOGIC: Auto-added when scholarship approved. Payment Done=Yes → complete. */}
+            {/* STEP 13: Payment Done=No → show in follow-ups. Payment Done=Yes → completed, hide from follow-ups */}
             {page==='payment'&&(
               <>
-                {todayPayFollowups.length>0&&(
-                  <div className="info-box">🔔 <strong>{todayPayFollowups.length}</strong> payment follow-up(s) due today — highlighted below.</div>
-                )}
+                {/* SECTION 1: PENDING PAYMENTS — Payment Done = No (active follow-ups) */}
                 <div className="table-card">
-                  <div className="table-card-header">
-                    <div><h3>Payment Tracking</h3><p>{filtered(payments).length} records · Auto-added when scholarship is Approved</p></div>
+                  <div className="table-card-header" style={{background: todayPayFollowups.length>0 ? '#FFFBEB' : '#fff'}}>
+                    <div>
+                      <h3>💳 Pending Payments</h3>
+                      <p>Payment Done = No · Follow-up tracking · {filtered(payments).filter(r=>r.payment_done==='no').length} records</p>
+                    </div>
                   </div>
                   <div className="table-wrap">
                     <table>
-                      <thead><tr><th>Student</th><th>Contact</th><th>University</th><th>Course</th><th>Pay %</th><th>Bank</th><th>Follow-up</th><th>Remarks</th><th>Done</th><th>Actions</th></tr></thead>
+                      <thead><tr><th>Student</th><th>Contact</th><th>University</th><th>Course</th><th>Pay %</th><th>Bank</th><th>Follow-up Date</th><th>Remarks</th><th>Done</th><th>Actions</th></tr></thead>
                       <tbody>
-                        {filtered(payments).map(r=>(
-                          <tr key={r.id} className={isToday(r.followup_date)&&r.payment_done==='no'?'row-today':isOverdue(r.followup_date)&&r.payment_done==='no'?'row-overdue':''}>
+                        {filtered(payments).filter(r=>r.payment_done==='no').map(r=>(
+                          <tr key={r.id} className={isToday(r.followup_date)?'row-today':isOverdue(r.followup_date)?'row-overdue':''}>
                             <td><div style={{display:'flex',alignItems:'center',gap:8}}><Avatar name={r.student_name}/><span className="td-name">{r.student_name}</span></div></td>
                             <td style={{whiteSpace:'nowrap'}}>{r.contact_number}<WaBtn number={r.contact_number}/></td>
                             <td>{r.university_name||'—'}</td>
@@ -740,8 +793,8 @@ export default function App(){
                             <td>{r.bank_option||'—'}</td>
                             <td style={{whiteSpace:'nowrap'}}>
                               {r.followup_date||'—'}
-                              {isToday(r.followup_date)&&r.payment_done==='no'&&<span className="today-tag">TODAY</span>}
-                              {isOverdue(r.followup_date)&&r.payment_done==='no'&&<span className="overdue-tag">OVERDUE</span>}
+                              {isToday(r.followup_date)&&<span className="today-tag">TODAY</span>}
+                              {isOverdue(r.followup_date)&&<span className="overdue-tag">OVERDUE</span>}
                             </td>
                             <td className="td-muted" style={{maxWidth:130,overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{r.remarks||'—'}</td>
                             <td><StatusBadge status={r.payment_done||'no'}/></td>
@@ -753,11 +806,51 @@ export default function App(){
                             </td>
                           </tr>
                         ))}
-                        {!filtered(payments).length&&<tr className="empty-row"><td colSpan={10}><span className="empty-icon">💳</span><span className="empty-text">No payments yet. Approve a scholarship to add here automatically.</span></td></tr>}
+                        {!filtered(payments).filter(r=>r.payment_done==='no').length&&<tr className="empty-row"><td colSpan={10}><span className="empty-icon">✅</span><span className="empty-text">No pending payments</span></td></tr>}
                       </tbody>
                     </table>
                   </div>
                 </div>
+
+                {/* SECTION 2: COMPLETED PAYMENTS — Payment Done = Yes (final, not in follow-ups) */}
+                {filtered(payments).filter(r=>r.payment_done==='yes').length>0&&(
+                  <div className="table-card">
+                    <div className="table-card-header">
+                      <div>
+                        <h3>✅ Completed Payments</h3>
+                        <p>Payment Done = Yes · Process completed · {filtered(payments).filter(r=>r.payment_done==='yes').length} records</p>
+                      </div>
+                    </div>
+                    <div className="table-wrap">
+                      <table>
+                        <thead><tr><th>Student</th><th>Contact</th><th>University</th><th>Course</th><th>Pay %</th><th>Bank</th><th>Remarks</th><th>Final Remarks</th><th>Done</th><th>Actions</th></tr></thead>
+                        <tbody>
+                          {filtered(payments).filter(r=>r.payment_done==='yes').map(r=>(
+                            <tr key={r.id}>
+                              <td><div style={{display:'flex',alignItems:'center',gap:8}}><Avatar name={r.student_name}/><span className="td-name">{r.student_name}</span></div></td>
+                              <td style={{whiteSpace:'nowrap'}}>{r.contact_number}<WaBtn number={r.contact_number}/></td>
+                              <td>{r.university_name||'—'}</td>
+                              <td>{r.course_name||'—'}</td>
+                              <td>{r.payment_percentage||'—'}</td>
+                              <td>{r.bank_option||'—'}</td>
+                              <td className="td-muted">{r.remarks||'—'}</td>
+                              <td className="td-muted">{r.final_remarks||'—'}</td>
+                              <td><StatusBadge status="yes"/></td>
+                              <td>
+                                <div className="actions">
+                                  <button className="btn btn-sm btn-blue-soft" onClick={()=>openModal('payment',r)}>View</button>
+                                  <button className="btn btn-sm btn-purple-soft" onClick={()=>{const sch=scholarships.find(s=>s.id===r.scholarship_id);if(sch){const inq=inquiries.find(i=>i.id===sch.inquiry_id);if(inq) setViewInquiry(inq)}}}>📋</button>
+                                </div>
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                )}
+
+                {!filtered(payments).length&&<div className="table-card"><div className="empty-row"><td style={{display:'block',padding:'36px 20px',textAlign:'center',color:'#CBD5E1'}}><span className="empty-icon">💳</span><span className="empty-text">No payments yet. Approve a scholarship to add here automatically.</span></td></div></div>}
               </>
             )}
 
